@@ -3,21 +3,18 @@
   "image": "node:20",
   "workspaceFolder": "/app",
   "mounts": [
-    // Bind mount for your local project
-    "source=/c/Projects/next-level/Docker/docker-with-typescipt-backend,target=/app,type=bind",
-
-    // Named volume for logs (similar to: -v ts-docker-logs://app/logs)
-    "source=ts-docker-logs,target=/app/logs,type=volume"
-
-    // Anonymous volume for node_modules (similar to: -v //app/node_modules)
-    // "target=/app/node_modules,type=volume"
+    "type=bind,source=/Users/maisha-chowa/Documents/koolio-office-task/docker-with-typescript-backend,target=/app",
+    "type=volume,source=ts-docker-logs,target=/app/logs",
+    "type=volume,target=/app/node_modules"
   ],
   "runArgs": [
     "--name",
     "ts-container",
     "-p",
-    "5000:5000",
-    "--rm" // Automatically remove the container after exiting VS Code
+    "5001:5001",
+    "--rm",
+    "--env-file",
+    "/Users/maisha-chowa/Documents/koolio-office-task/docker-with-typescript-backend/.env"
   ],
   "postCreateCommand": "npm install"
 }
